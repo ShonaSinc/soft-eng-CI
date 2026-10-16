@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install dependencies
+        run: |
+          python -m pip install .[dev]
+      - name: Create coverage reports
+        run: |
+          pytest --cov=ci_course --cov_report=xml
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v7
         with:
