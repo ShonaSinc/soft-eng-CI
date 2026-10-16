@@ -21,7 +21,7 @@ jobs:
           python -m pip install .[dev] pytest-cov
       - name: Create coverage reports
         run: |
-          pytest --cov=ci_course --cov_report=xml
+          pytest --cov=ci_course
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v7
         with:
