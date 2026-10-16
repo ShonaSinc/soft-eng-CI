@@ -4,13 +4,33 @@ on:
     push:
         branches: [main]
 
-permissions:
-    contents: read
-    pages: write
-    id-token: write
-
 jobs:
-    deploy:
+    tests:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v7
+
+        - name: Set up Python ${{ matrix.python-version }}
+          uses: actions/setup-python@v7
+          with:
+            python-version: ${{ matrix.python-version }}
+            cache: pip
+            cache-dependency-path: pyproject.toml
+
+        - name: Install dependencies
+          run: |
+            python -m pip install .[dev]
+
+        - name: Lint with ruff
+          run: |
+            ruff check .
+
+        - name: Test with pytest
+          run: |
+            pytest
+
+    build-docs:
+        needs: tests
         runs-on: ubuntu-latest
         environment: github-pages
         steps:
@@ -25,4 +45,13 @@ jobs:
             with:
               path: _build/html
           - uses: actions/configure-pages@v3
+    deploy:
+        needs: build-docs
+        permissions:
+            contents: read
+            pages: write
+            id-token: write
+        runs-on: ubuntu-latest
+        environment: github-pages
+        steps:
           - uses: actions/deploy-pages@v5
