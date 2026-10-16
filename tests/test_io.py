@@ -26,3 +26,10 @@ def test_reads_a_file_given_by_path(tmp_path):
 
     assert list(data) == ["height_m"]
     assert data["height_m"].tolist() == [1.5, 2.5]
+
+def test_exception_from_csv():
+    csv = data / "sampe_measurements_testing.csv"
+
+    data = ci_course.load_measurements(csv)
+
+    assert data[6:1] == 'nan'
