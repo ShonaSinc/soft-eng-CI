@@ -1,8 +1,6 @@
 """Reading measurement data from CSV files."""
 
 import csv
-from pathlib import Path
-
 import numpy as np
 
 
