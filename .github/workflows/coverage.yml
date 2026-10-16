@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  basic-job:
+  codecov-job:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,3 +16,4 @@ jobs:
             token: ${{ secrets.CODECOV_TOKEN }}
             fail_ci_if_error: true
             files: coverage.xml
+            run: pytest --cov=ci_course --cov-report=xml
