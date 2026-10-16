@@ -8,7 +8,7 @@ from .stats import summarise_all
 
 def main(argv=None):
     """
-    Summarise a CSV file of measurements.
+    Summarise a CSV file of measurements using basic statistics.
 
     Parameters
     ----------

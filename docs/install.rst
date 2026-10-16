@@ -5,4 +5,4 @@ To install this module, please clone the repo, create a virtual environment, and
 
     python -m pip install -e ".[dev, docs]"
 
-from within your virtual environment.
+from within your virtual environment. This should install the ci_course module for your easy use.

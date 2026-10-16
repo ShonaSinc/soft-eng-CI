@@ -13,7 +13,7 @@ def sample_data_path():
     Returns
     -------
     pathlib.Path
-        The location of ``sample_measurements.csv``.
+        The location of ``sample_measurements.csv`` in your file system.
     """
     return Path(__file__).parent / "data" / "sample_measurements.csv"
 
